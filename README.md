@@ -4,7 +4,8 @@ xml-sitemap-to-html
 simple gplv2 bash script to convert an xml sitemap to an html page full of links
 
 if you can use it, then great :D by Jonathan Mitchell
-jonathansblog.co.uk 
+
+http://jonathansblog.co.uk/xml-sitemap-html-simple-bash-script
 
 tested on osx and linux (Mavericks and linux mint) - but its a bash script, so it should work where you have bash, sed cat and grep
 
