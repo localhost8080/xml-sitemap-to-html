@@ -13,4 +13,6 @@ once downloaded you will need to chmod +x the file to make it executable
 
 
 usage:
-sitemap-xml-to-html input_file output_file
+sitemap-xml-to-html input_file
+
+output will be to STDOUT so you can direct it with pipes etc

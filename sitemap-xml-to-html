@@ -22,18 +22,6 @@ function checkinput {
 	fi	
 }
 
-# output file check function
-function checkoutput {
-	# does the file exist?
-	if [ -f $1 ];then 
-		# dont exit, nuke the file
-		echo > $1
-	else
-		# create it
-		echo > $1
-	fi
-}
-
 # help function
 function help {
 	echo ""
@@ -41,8 +29,9 @@ function help {
 	echo "by jonathan at jonathansblog.co.uk"
 	echo ""
 	echo "usage: "
-	echo "sitemap-xml-to-html input_file output_file"
+	echo "sitemap-xml-to-html input_file"
 	echo ""
+	echo "output will be to STDOUT so you can pipe it or direct it to a file as usual"
 }
 
 
@@ -50,11 +39,11 @@ if [ "$1" = "-h" ] || [ -z $1 ] || [ -z $2 ]; then
 	help
 else
 	checkinput $1
-	checkoutput $2
 	urls=`cat $1 | grep loc | sed 's#<loc>##g' | sed 's#</loc>##g'`
 	# now we only have urls, need to turn them into anchor tags...
 	for url in $urls ; do
-		echo '<a href="'$url'">'$url'</a>' >> $2
+		echo '<a href="'$url'">'$url'</a>'
+		echo ""
 	done
-	echo "$2 has been created"
+	
 fi
