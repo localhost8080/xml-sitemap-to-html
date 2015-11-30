@@ -35,7 +35,7 @@ function help {
 }
 
 
-if [ "$1" = "-h" ] || [ -z $1 ] || [ -z $2 ]; then
+if [ "$1" = "-h" ] || [ -z $1 ]; then
 	help
 else
 	checkinput $1
