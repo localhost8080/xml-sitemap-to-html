@@ -42,7 +42,7 @@ else
 	urls=`cat $1 | grep "<loc>" | sed 's#<loc>##g' | sed 's#</loc>##g'`
 	# now we only have urls, need to turn them into anchor tags...
 	for url in $urls ; do
-		echo '<a href="'$url'">'$url'</a><br/>'
+		echo '<a target="_new" href="'$url'">'$url'</a><br/>'
 		echo ""
 	done
 	
