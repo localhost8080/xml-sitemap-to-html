@@ -1,0 +1,3 @@
+#!/bin/sh
+
+java -jar ./vnu.jar --errors-only --format text $1
