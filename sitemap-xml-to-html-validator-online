@@ -40,7 +40,7 @@ if [ "$1" = "-h" ] || [ -z $1 ]; then
 else
 	checkinput $1
 	echo '<!DOCTYPE html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"></head><body><div class="container">';
-	urls=`cat $1 | grep "<loc>" | sed 's#<loc>##g' | sed 's#</loc>##g'`
+	urls=`cat $1 | grep "<loc>" | awk -F"<loc>" '{print $2} ' | awk -F"</loc>" '{print $1}'`
 	# now we only have urls, need to turn them into anchor tags...
 	for url in $urls ; do
     	encoded=$(php -r "echo rawurlencode('$url');")
