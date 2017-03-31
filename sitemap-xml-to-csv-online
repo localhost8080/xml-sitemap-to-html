@@ -1,0 +1,47 @@
+#!/bin/bash
+
+########
+#
+# simple gplv2 script to change an xml sitemap to an html file full of links
+#
+# if you can use it, then great :D by Jonathan Mitchell
+# jonathansblog.co.uk
+#
+########
+
+# input file check function
+function checkinput {
+	# does the file exist?
+	if [ -f $1 ];then
+		# dont exit
+		echo ""
+	else
+		echo "$1 doesnt exist"
+		exit
+		#"input file $1 doesnt exist"
+	fi
+}
+
+# help function
+function help {
+	echo ""
+	echo "sitemap-xml-to-csv script"
+	echo "by jonathan at jonathansblog.co.uk"
+	echo ""
+	echo "usage: "
+	echo "sitemap-xml-to-csv-online url-to-sitemap"
+	echo ""
+	echo "output will be to result.csv so you can view it in excel"
+}
+
+
+if [ "$1" = "-h" ] || [ -z $1 ]; then
+	help
+else
+	checkinput $1
+	urls=`cat $1 | grep "<loc>" | awk -F"<loc>" '{print $2} ' | awk -F"</loc>" '{print $1}'`
+	# now we only have urls, need to turn them into anchor tags...
+	for url in $urls ; do
+    	echo $url,
+	done
+fi
